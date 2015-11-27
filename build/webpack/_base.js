@@ -60,16 +60,6 @@ const webpackConfig = {
         }
       },
 
-      // Sass
-      {
-        test    : /\.scss$/,
-        loaders : [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
-      },
       // css-modules
       { test: /\.css$/,          loader: 'style-loader!css-loader?modules!postcss-loader' },
 
@@ -81,9 +71,6 @@ const webpackConfig = {
       { test: /\.svg(\?.*)?$/,   loader: "url-loader?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml" }
       /* eslint-enable */
     ]
-  },
-  sassLoader : {
-    includePaths : paths.src('styles')
   },
   postcss : [ autoprefixer({ browsers : ['last 2 versions'] }) ]
 };
