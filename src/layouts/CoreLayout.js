@@ -1,5 +1,4 @@
 import React from 'react';
-import 'styles/core.scss';
 
 export default class CoreLayout extends React.Component {
   static propTypes = {
@@ -8,8 +7,8 @@ export default class CoreLayout extends React.Component {
 
   render () {
     return (
-      <div className='page-container'>
-        <div className='view-container'>
+      <div>
+        <div>
           {this.props.children}
         </div>
       </div>

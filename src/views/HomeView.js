@@ -4,6 +4,7 @@ import { connect }            from 'react-redux';
 import counterActions         from 'actions/counter';
 import { Link }               from 'react-router';
 import styles                 from 'styles/home-view.css';
+import RaisedButton           from 'material-ui/lib/raised-button';
 
 // We define mapStateToProps and mapDispatchToProps where we'd normally use
 // the @connect decorator so the data requirements are clear upfront, but then
@@ -21,17 +22,16 @@ export class HomeView extends React.Component {
   static propTypes = {
     actions  : React.PropTypes.object,
     counter  : React.PropTypes.number
-  }
+  };
 
   render () {
     return (
       <div className={styles.container}>
-        <h1>Welcome to the React Redux Starter Kit</h1>
+        <h1>Hello to the React Redux Starter Kit</h1>
         <h2>Sample Counter: {this.props.counter}</h2>
-        <button className='btn btn-default'
-                onClick={this.props.actions.increment}>
-          Increment
-        </button>
+        <RaisedButton
+          label='Increment'
+          onClick={this.props.actions.increment} />
         <hr />
         <Link to='/about'>Go To About View</Link>
       </div>
