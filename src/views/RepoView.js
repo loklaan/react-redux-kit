@@ -24,9 +24,10 @@ export default class RepoView extends React.Component {
   }
 
   render () {
-    const isEmptyRepo = Object.keys(this.props.repo).length === 0;
+    debugger;
+    const isRepoHydrated = Object.keys(this.props.repo).length > 0;
 
-    if (isEmptyRepo) {
+    if (!isRepoHydrated) {
       return <CircularProgress mode="indeterminate" color={"red"} size={2} />;
     } else {
       return (

@@ -11,11 +11,11 @@ const mapStateToProps = (state) => ({
 });
 const mapActionDispatchToProps = (dispatch) => bindActionCreators({
   setName: githubActions.setName,
-  getUserRepos: servicesActions.userRepos
+  getUserRepos: servicesActions.github.userRepos
 }, dispatch);
 
 @connect(mapStateToProps, mapActionDispatchToProps)
-export default class ProjectRepoList extends React.Component {
+export default class FindUserProjects extends React.Component {
   static propTypes = {
     // NOTE: Usually, something like the state of a field doesn't need to go into the Redux store,
     // and instead cna reside in it's component. This was just done in a way to show redux dispatches.
@@ -55,7 +55,7 @@ export default class ProjectRepoList extends React.Component {
 
   render () {
     return (
-      <div>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
         <RaisedButton
           label={`Find the user's GitHub Repos`}
           onClick={() => this.onFindReposClick()} />

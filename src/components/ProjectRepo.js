@@ -1,3 +1,4 @@
+import React  from 'react';
 import Badge  from 'material-ui/lib/badge';
 import Avatar from 'material-ui/lib/avatar';
 import styles from '../styles/home-view.css';

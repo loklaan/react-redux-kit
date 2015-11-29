@@ -27,7 +27,7 @@ export default class ProjectRepoList extends React.Component {
       <List>
         {map(repos, repo => (
           <ProjectRepo
-            id={repo.id}
+            key={repo.id}
             name={repo.fullName}
             description={repo.description}
             imageUrl={repo.owner.avatar}
