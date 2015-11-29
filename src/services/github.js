@@ -42,7 +42,7 @@ export default reduxApi({
     url: `${URL}/search/users`,
     options: { headers },
     transformer (data) {
-      debugger; // TODO: evaluate response format
+      // TODO: evaluate response format
     },
     helpers: {
       search (query) {

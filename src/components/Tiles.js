@@ -1,24 +1,39 @@
 import React from 'react';
 
+/**
+ * Renders random tiles the height and width of the available space inside the browser window.
+ * Adapted from from http://codepen.io/littleberry/pen/xkclv
+ *
+ * Props:
+ *   colors     An array of RGB arrays. See default props for example.
+ */
 export default class Tiles extends React.Component {
+  static propTypes = {
+    colors: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.number))
+  };
 
-  constructor () {
-    super();
-
-    var NS = "http://www.w3.org/2000/svg";
-    var viewport = [ screen.width, screen.height ];
-    var tileSize = 50;
-    var gridX = Math.floor( viewport[0] / tileSize );
-    var gridY = Math.floor( viewport[1] / tileSize );
-    var colors = [
+  static defaultProps = {
+    colors: [
+      // Red Blue and Cyan
       [ 2, 100, 68 ],
       [ 175, 100, 75 ],
       [ 201, 100, 60 ]
-    ];
+    ]
+  };
 
-    var SVG = function( w, h ) {
-      var svg = document.createElementNS( NS, "svg" );
-      var viewBox = "0 0 " + w + " " + h;
+  constructor (...args) {
+    super(...args);
+
+    let NS = "http://www.w3.org/2000/svg";
+    let viewport = [ screen.width, screen.height ];
+    let tileSize = 50;
+    let gridX = Math.floor( viewport[0] / tileSize );
+    let gridY = Math.floor( viewport[1] / tileSize );
+    let colors = this.props.colors;
+
+    let SVG = function( w, h ) {
+      let svg = document.createElementNS( NS, "svg" );
+      let viewBox = "0 0 " + w + " " + h;
       svg.setAttribute("width", w);
       svg.setAttribute("height", h);
       svg.setAttribute( "viewBox", viewBox );
@@ -26,28 +41,28 @@ export default class Tiles extends React.Component {
       return svg;
     }
 
-    var Rect = function( w, h, fill ) {
-      var rect = document.createElementNS( NS, "rect" );
+    let Rect = function( w, h, fill ) {
+      let rect = document.createElementNS( NS, "rect" );
       rect.width.baseVal.value = w;
       rect.height.baseVal.value = h;
       rect.style.fill = fill;
 
       return rect;
     }
-    var LgTriangle = function( fill ) {
-      var triangle = document.createElementNS( NS, "polygon" );
-      var coords = "0,0 " + tileSize + ",0 0," + tileSize;
+    let LgTriangle = function( fill ) {
+      let triangle = document.createElementNS( NS, "polygon" );
+      let coords = "0,0 " + tileSize + ",0 0," + tileSize;
       triangle.setAttribute( "points", coords );
-      var hsl = fill.split( ' ' );
-      var lum = hsl[2].split( '%' );
+      let hsl = fill.split( ' ' );
+      let lum = hsl[2].split( '%' );
       lum = parseInt(lum[0]) - 30;
       fill = hsl[0] + " " + hsl[1] + " " + lum + "%)";
       triangle.style.fill = fill;
       return triangle;
     }
-    var SmTriangle = function( corner, fill ) {
-      var triangle = document.createElementNS( NS, "polygon" );
-      var coords, colorShift;
+    let SmTriangle = function( corner, fill ) {
+      let triangle = document.createElementNS( NS, "polygon" );
+      let coords, colorShift;
       if ( corner == "tl" ) {
         coords = "0,0 " + ( tileSize / 2 ) + ",0 0," + ( tileSize / 2 );
         colorShift = -15;
@@ -56,18 +71,18 @@ export default class Tiles extends React.Component {
         colorShift = 15;
       }
       triangle.setAttribute( "points", coords );
-      var hsl = fill.split( ' ' );
-      var hue = hsl[0].split( '(' );
+      let hsl = fill.split( ' ' );
+      let hue = hsl[0].split( '(' );
       hue = parseInt( hue[1] ) + colorShift;
       fill = "hsl(" + hue + ", " + hsl[1] + " " + hsl[2];
       triangle.style.fill = fill;
       return triangle;
     }
-    var Tile = function() {
-      var useColor = getRandomColor();
-      var g = document.createElementNS( NS, "g" );
-      var rect = new Rect( tileSize, tileSize, useColor );
-      var r, tng, triangle;
+    let Tile = function() {
+      let useColor = getRandomColor();
+      let g = document.createElementNS( NS, "g" );
+      let rect = new Rect( tileSize, tileSize, useColor );
+      let r, tng, triangle;
 
       g.appendChild( rect );
 
@@ -97,23 +112,23 @@ export default class Tiles extends React.Component {
       return g;
     }
 
-    var getRandomColor = function() {
-      var r = Math.floor( Math.random( ) * colors.length );
-      var color = "hsl(" + colors[r][0] + ", " + colors[r][1] + "%, " + colors[r][2] + "%)";
+    let getRandomColor = function() {
+      let r = Math.floor( Math.random( ) * colors.length );
+      let color = "hsl(" + colors[r][0] + ", " + colors[r][1] + "%, " + colors[r][2] + "%)";
       return color;
     }
 
-    var tilesSVG = new SVG( viewport[0], viewport[1] );
+    let tilesSVG = new SVG( viewport[0], viewport[1] );
     this.tiles = tilesSVG;
-    var useX = 0;
-    var useY = 0;
-    var translate = tilesSVG.createSVGTransform();
-    var rotate = tilesSVG.createSVGTransform();
+    let useX = 0;
+    let useY = 0;
+    let translate = tilesSVG.createSVGTransform();
+    let rotate = tilesSVG.createSVGTransform();
 
     for ( let gY = 0; gY < gridY; gY++ ) {
       for ( let gX = 0; gX < gridX; gX++ ) {
-        var tile = new Tile();
-        var deg = Math.round( Math.random() * 4 ) * 90;
+        let tile = new Tile();
+        let deg = Math.round( Math.random() * 4 ) * 90;
 
         tile.transform.baseVal.appendItem( tilesSVG.createSVGTransform() );
         tile.transform.baseVal.appendItem( tilesSVG.createSVGTransform() );
