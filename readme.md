@@ -1,9 +1,25 @@
-<h1>(Get) Hitch</h1>
+# React & Redux Start Kit
+
+React + Redux + Webpack + Hot Reloading
+
+**Main packages**
+- [react](https://facebook.github.io/react/docs/getting-started)
+- [react-router](https://rackt.github.io/react-router/)
+- [react-redux](https://github.com/gaearon/react-redux)
+- [redux](http://rackt.github.io/redux)
+- [redux-simple-router](https://github.com/jlongster/redux-simple-router)
+- [redux-api](https://github.com/lexich/redux-api)
 
 ## Setup
 
-### Dependencies
+### Installing
 
+Grab the repo
+```shell
+git clone git@github.com:loklaan/react-redux-kit.git react-redux-kit
+```
+
+Install npm dependencies
 ```
 $ npm i
 ```
@@ -20,7 +36,7 @@ This can be useful when using `lodash`. Also useful for `redux` and `react` / `r
 
 ## Directory Structure
 
-Here is the quick and easy, about directories you'll likely be using.
+Here is the quick and easy about directories you'll likely be using.
 
 ```
 .
