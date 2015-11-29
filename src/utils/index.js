@@ -1,7 +1,10 @@
-import React        from 'react';
-import ReactDOM     from 'react-dom';
-import { Provider } from 'react-redux';
-import DevTools     from 'containers/DevToolsWindow';
+import React          from 'react';
+import ReactDOM       from 'react-dom';
+import { Provider }   from 'react-redux';
+import DevTools       from '../containers/DevToolsWindow';
+import configureStore from './configureStore';
+
+export { configureStore };
 
 export function createConstants (...constants) {
   return constants.reduce((acc, constant) => {
@@ -14,7 +17,7 @@ export function createReducer (initialState, fnMap) {
   return (state = initialState, { type, payload }) => {
     const handler = fnMap[type];
 
-    return handler ? handler(state, payload) : state;
+    return handler ? handler(state, payload): state;
   };
 }
 

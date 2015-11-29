@@ -19,9 +19,9 @@ webpackConfig.plugins.push(
 webpackConfig.module.loaders = webpackConfig.module.loaders.map(loader => {
   if (/js(?!on)/.test(loader.test)) {
     loader.query.env.development.extra['react-transform'].transforms.push({
-      transform : 'react-transform-hmr',
-      imports   : ['react'],
-      locals    : ['module']
+      transform: 'react-transform-hmr',
+      imports: ['react'],
+      locals: ['module']
     });
   }
 

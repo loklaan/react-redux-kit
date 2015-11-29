@@ -6,52 +6,53 @@ import autoprefixer      from 'autoprefixer';
 const paths = config.get('utils_paths');
 
 const webpackConfig = {
-  name    : 'client',
-  target  : 'web',
-  entry   : {
-    app : [
+  name: 'client',
+  target: 'web',
+  entry: {
+    app: [
       paths.project(config.get('dir_src')) + '/app.js'
     ],
-    vendor : config.get('vendor_dependencies')
+    vendor: config.get('vendor_dependencies')
   },
-  output : {
-    filename   : '[name].js',
-    path       : paths.project(config.get('dir_dist')),
-    publicPath : '/'
+  output: {
+    filename: '[name].js',
+    path: paths.project(config.get('dir_dist')),
+    publicPath: '/'
   },
-  plugins : [
+  plugins: [
     new webpack.DefinePlugin(config.get('globals')),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new HtmlWebpackPlugin({
-      template : paths.src('index.html'),
-      hash     : true,
-      filename : 'index.html',
-      inject   : 'body'
+      template: paths.src('index.html'),
+      hash: true,
+      filename: 'index.html',
+      inject: 'body'
     })
   ],
-  resolve : {
-    extensions : ['', '.js', '.jsx'],
-    alias      : config.get('utils_aliases')
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+    // DISABLING due to lost intellisense
+    // alias: config.get('utils_aliases')
   },
-  module : {
-    loaders : [
+  module: {
+    loaders: [
       // Babel
       {
-        test : /\.(js|jsx)$/,
-        exclude : /node_modules/,
-        loader  : 'babel',
-        query   : {
-          stage    : 0,
-          optional : ['runtime'],
-          env      : {
-            development : {
-              plugins : ['react-transform'],
-              extra   : {
-                'react-transform' : {
-                  transforms : [{
-                    transform : 'react-transform-catch-errors',
-                    imports   : ['react', 'redbox-react']
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          stage: 0,
+          optional: ['runtime'],
+          env: {
+            development: {
+              plugins: ['react-transform'],
+              extra: {
+                'react-transform': {
+                  transforms: [{
+                    transform: 'react-transform-catch-errors',
+                    imports: ['react', 'redbox-react']
                   }]
                 }
               }
@@ -72,7 +73,7 @@ const webpackConfig = {
       /* eslint-enable */
     ]
   },
-  postcss : [ autoprefixer({ browsers : ['last 2 versions'] }) ]
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ]
 };
 
 // NOTE: this is a temporary workaround. I don't know how to get Karma

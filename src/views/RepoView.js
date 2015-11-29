@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const AboutView = () => (
+const RepoView = () => (
   <div className='container text-center'>
     <h1>This is the about view!</h1>
     <hr />
@@ -9,4 +9,4 @@ const AboutView = () => (
   </div>
 );
 
-export default AboutView;
+export default RepoView;

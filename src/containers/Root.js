@@ -7,16 +7,16 @@ import { createDevToolsWindow } from '../utils';
 
 export default class Root extends React.Component {
   static propTypes = {
-    history : React.PropTypes.object.isRequired,
-    store   : React.PropTypes.object.isRequired,
-    debug   : React.PropTypes.bool,
-    debugExternal : React.PropTypes.bool
-  }
+    history: React.PropTypes.object.isRequired,
+    store: React.PropTypes.object.isRequired,
+    debug: React.PropTypes.bool,
+    debugExternal: React.PropTypes.bool
+  };
 
   static defaultProps = {
-    debug : false,
-    debugExternal : false
-  }
+    debug: false,
+    debugExternal: false
+  };
 
   renderDevTools () {
     if (!this.props.debug) {
@@ -24,7 +24,7 @@ export default class Root extends React.Component {
     }
 
     return this.props.debugExternal ?
-      createDevToolsWindow(this.props.store) : <DevTools />;
+      createDevToolsWindow(this.props.store): <DevTools />;
   }
 
   render () {

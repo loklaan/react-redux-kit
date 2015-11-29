@@ -17,8 +17,8 @@ config.set('dir_test', 'tests');
 
 config.set('coverage_enabled', !argv.watch);
 config.set('coverage_reporters', [
-  { type : 'text-summary' },
-  { type : 'html', dir : 'coverage' }
+  { type: 'text-summary' },
+  { type: 'html', dir: 'coverage' }
 ]);
 
 config.set('webpack_host',  'localhost');
@@ -58,14 +58,14 @@ Edit at Your Own Risk
 // ------------------------------------
 config.set('env', process.env.NODE_ENV);
 config.set('globals', {
-  'process.env'  : {
-    'NODE_ENV' : JSON.stringify(config.get('env'))
+  'process.env': {
+    'NODE_ENV': JSON.stringify(config.get('env'))
   },
-  'NODE_ENV'     : config.get('env'),
-  '__DEV__'      : config.get('env') === 'development',
-  '__PROD__'     : config.get('env') === 'production',
-  '__DEBUG__'    : config.get('env') === 'development' && !argv.no_debug,
-  '__DEBUG_NW__' : !!argv.nw
+  'NODE_ENV': config.get('env'),
+  '__DEV__': config.get('env') === 'development',
+  '__PROD__': config.get('env') === 'production',
+  '__DEBUG__': config.get('env') === 'development' && !argv.no_debug,
+  '__DEBUG_NW__': !!argv.nw
 });
 
 // ------------------------------------
@@ -90,9 +90,9 @@ const paths = (() => {
   const project = (...args) => resolve.apply(resolve, [...base, ...args]);
 
   return {
-    project : project,
-    src     : project.bind(null, config.get('dir_src')),
-    dist    : project.bind(null, config.get('dir_dist'))
+    project: project,
+    src: project.bind(null, config.get('dir_src')),
+    dist: project.bind(null, config.get('dir_dist'))
   };
 })();
 
