@@ -30,7 +30,11 @@ export default class Root extends React.Component {
   render () {
     return (
       <Provider store={this.props.store}>
-        <div>
+        <div style={{
+          display: 'inherit',
+          height: 'inherit',
+          width: 'inherit'
+        }}>
           <Router history={this.props.history}>
             {routes}
           </Router>

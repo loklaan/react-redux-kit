@@ -8,6 +8,3 @@
 
 // GitHub Actions
 export const GITHUB_SET_USER = 'GITHUB_SET_USER';
-
-// Counter Actions
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT';

@@ -17,9 +17,11 @@ export default reduxApi({
       return map(data, (item)=> {
         return {
           id: item.id,
-          name: item.full_name,
-          description: item.full_name,
-          user: {
+          name: item.name,
+          fullName: item.full_name,
+          description: item.description,
+          owner: {
+            id: item.owner.id,
             name: item.owner.login,
             avatar: item.owner.avatar_url
           }
@@ -27,7 +29,7 @@ export default reduxApi({
       });
     },
     helpers: {
-      mine () {
+      loklaans () {
         return [{user: 'loklaan'}, {}];
       }
     }
@@ -40,13 +42,7 @@ export default reduxApi({
     url: `${URL}/search/users`,
     options: { headers },
     transformer (data) {
-      return map(data, (item) => {
-        debugger;
-      });
-      //return {
-      //  total: data.total_count,
-      //  users: map(data.items, user => user)
-      //};
+      debugger; // TODO: evaluate response format
     },
     helpers: {
       search (query) {

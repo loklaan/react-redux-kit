@@ -7,6 +7,6 @@ import RepoView             from './views/RepoView';
 export default (
   <Route        component={CoreLayout} path='/'>
     <IndexRoute component={HomeView} />
-    <Route      component={RepoView}  path='/repo/:id' />
+    <Route      component={RepoView}  path='/repos/:userId/:repoId' />
   </Route>
 );
