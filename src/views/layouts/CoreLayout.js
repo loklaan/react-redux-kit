@@ -34,7 +34,7 @@ export default class CoreLayout extends React.Component {
             alignItems: 'center'
           }}
         >
-          <AppBar title='Hitch' />
+          <AppBar title='App' />
           <div style={{margin: '2em 0', overflow: 'scroll'}}>
             {this.props.children}
           </div>
